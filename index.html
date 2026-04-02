@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Scam Shield</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-logo">
+      <div class="logo-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z" fill="var(--accent)" opacity="0.15"/>
+          <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z" stroke="var(--accent)" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M9 12l2 2 4-4" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span>AI Scam Shield</span>
+    </div>
+    <div class="nav-tags">
+      <span class="tag">Cybersecurity</span>
+      <span class="tag">NLP</span>
+      <span class="tag accent-tag">Hacknovate 7.0</span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">
+      <span class="pulse-dot"></span>
+      Real-time detection active
+    </div>
+    <h1 class="hero-title">
+      Detect Scams<br/>
+      <span class="highlight">Before They Strike</span>
+    </h1>
+    <p class="hero-sub">
+      Paste any suspicious message below. Our AI analyzes urgency patterns,<br/>
+      threat signals & fraudulent intent in under 2 seconds.
+    </p>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">₹1000Cr+</span>
+        <span class="stat-label">Lost to scams yearly</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">94%</span>
+        <span class="stat-label">Detection accuracy</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num">&lt;2s</span>
+        <span class="stat-label">Analysis time</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN ANALYZER -->
+  <section class="analyzer-section">
+    <div class="analyzer-card">
+
+      <div class="card-header">
+        <div class="card-title-row">
+          <h2>Message Analyzer</h2>
+          <div class="model-badge">
+            <span class="model-dot"></span>
+            NLP Model Active
+          </div>
+        </div>
+        <p class="card-sub">Enter any SMS, WhatsApp or email message to scan it</p>
+      </div>
+
+      <div class="input-area">
+        <div class="input-wrapper">
+          <textarea
+            id="messageInput"
+            placeholder="Paste your message here...&#10;&#10;Example: Your bank account will be blocked. Send OTP immediately to avoid legal action. Click: bit.ly/verify"
+            rows="5"
+          ></textarea>
+          <div class="char-count" id="charCount">0 / 500</div>
+        </div>
+
+        <div class="quick-tests">
+          <span class="quick-label">Try an example:</span>
+          <button class="quick-btn scam-ex" onclick="loadExample('scam1')">Bank scam</button>
+          <button class="quick-btn scam-ex" onclick="loadExample('scam2')">OTP fraud</button>
+          <button class="quick-btn scam-ex" onclick="loadExample('scam3')">Prize scam</button>
+          <button class="quick-btn safe-ex" onclick="loadExample('safe1')">Safe message</button>
+        </div>
+
+        <button class="analyze-btn" id="analyzeBtn" onclick="analyzeMessage()">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <circle cx="11" cy="11" r="8" stroke="white" stroke-width="1.8"/>
+            <path d="M21 21l-4.35-4.35" stroke="white" stroke-width="1.8" stroke-linecap="round"/>
+            <path d="M11 8v6M8 11h6" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          Analyze Message
+        </button>
+      </div>
+
+      <!-- RESULT PANEL -->
+      <div class="result-panel" id="resultPanel">
+
+        <div class="result-header" id="resultHeader">
+          <div class="risk-icon" id="riskIcon"></div>
+          <div class="risk-info">
+            <div class="risk-label" id="riskLabel">Analyzing...</div>
+            <div class="risk-sublabel" id="riskSublabel"></div>
+          </div>
+          <div class="risk-score-circle" id="riskScoreCircle">
+            <span id="riskScoreNum">--</span>
+            <small>risk</small>
+          </div>
+        </div>
+
+        <div class="result-body">
+          <div class="signals-section">
+            <h4>Detected Signals</h4>
+            <div class="signals-grid" id="signalsGrid"></div>
+          </div>
+
+          <div class="breakdown-section">
+            <h4>AI Analysis</h4>
+            <p class="ai-summary" id="aiSummary"></p>
+          </div>
+
+          <div class="recommendation-box" id="recommendationBox">
+            <div class="rec-icon" id="recIcon"></div>
+            <div>
+              <strong id="recTitle"></strong>
+              <p id="recText"></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section">
+    <div class="section-label">Under the Hood</div>
+    <h2 class="section-title">How AI Scam Shield Works</h2>
+    <div class="steps-row">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="var(--accent)" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Input Message</h3>
+        <p>User pastes any suspicious SMS, email or WhatsApp message into the analyzer</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>NLP Analysis</h3>
+        <p>Text is tokenized and scanned for urgency, fear, threat patterns and suspicious links</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z" stroke="var(--accent)" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Risk Scoring</h3>
+        <p>Dual-layer scoring: rule-based keyword detection + transformer model classification</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M22 11.08V12a10 10 0 11-5.93-9.14" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"/>
+            <polyline points="22 4 12 14.01 9 11.01" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3>Clear Output</h3>
+        <p>User receives risk level, detected signals and actionable recommendation instantly</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z" fill="var(--accent)" opacity="0.2"/>
+          <path d="M12 2L3 7v5c0 5.25 3.75 10.15 9 11.35C17.25 22.15 21 17.25 21 12V7L12 2z" stroke="var(--accent)" stroke-width="1.5"/>
+        </svg>
+        AI Scam Shield
+      </div>
+      <p>Built by <strong>BIT Bandits</strong> · Hacknovate 7.0 · Cybersecurity & AI Track</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
